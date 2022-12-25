@@ -42,6 +42,29 @@ console.log(fn.name);
 // - default binding --------------------
 globalThis.name = "Niall";
 function sayMyName4() {
-  console.log(this.name); // here this will take the global name
+  console.log(this.name); // here this will bind with global object and will take the global name
 }
 sayMyName4();
+
+// - prototype inheritence ---------------------
+
+function Human(fname, lname) {
+  this.fname = fname;
+  this.lname = lname;
+}
+Human.prototype.getFullName = function () {
+  console.log(`${this.fname} ${this.lname}`);
+};
+
+const h1 = new Human("John", "Cena");
+h1.getFullName();
+
+function Singer(genre, fname, lname) {
+  Human.call(this, fname, lname);
+  this.genre = genre;
+}
+Singer.prototype = Object.create(Human.prototype);
+Singer.prototype.constructor = Singer;
+
+const s1 = new Singer("Pop", "Justin", "Bieber");
+console.log(s1.constructor);
