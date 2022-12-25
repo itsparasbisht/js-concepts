@@ -1,0 +1,47 @@
+// - closure -----------------------------
+// when we return a function in javascript then that returned function has the
+// access to the scope of it's parent function and that scope is stored in the
+// memory.
+// So even if the parent function has been executed, the returned function
+// still has the access to the parent functions scope.
+
+// - currying ---------------------------
+// it is a way of transforming a function that takes multiple arguments into a
+// sequence of nested functions where each function takes one argument at a time.
+
+// - this ------------------------------
+
+// - implicit binding --------------------------
+const obj = {
+  name: "Harry",
+  sayMyName: function () {
+    console.log(`My name is ${this.name}`); // here this referes to the object itself
+  },
+};
+
+obj.sayMyName();
+
+// - explicit binding --------------------------
+const person = {
+  name: "Louis",
+};
+function sayMyName2() {
+  console.log(`My name is ${this.name}`);
+}
+
+sayMyName2.call(person); // here we are binding this to person object
+
+// - new binding -----------------------
+function sayMyName3(name) {
+  this.name = name; // initializing this constructor function with 'new' will allocate this = {}
+}
+
+const fn = new sayMyName3("Zayn");
+console.log(fn.name);
+
+// - default binding --------------------
+globalThis.name = "Niall";
+function sayMyName4() {
+  console.log(this.name); // here this will take the global name
+}
+sayMyName4();
