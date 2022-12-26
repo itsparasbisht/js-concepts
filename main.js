@@ -68,3 +68,28 @@ Singer.prototype.constructor = Singer;
 
 const s1 = new Singer("Pop", "Justin", "Bieber");
 console.log(s1.constructor);
+
+class Person {
+  constructor(fname, lname) {
+    this.fname = fname;
+    this.lname = lname;
+  }
+
+  logFullName() {
+    console.log(`${this.fname} ${this.lname}`);
+  }
+}
+
+const p1 = new Person("Hero", "Singh");
+p1.logFullName();
+
+class SocialLinks extends Person {
+  constructor(fname, lname, link1) {
+    super(fname, lname);
+    this.link1 = link1;
+  }
+}
+
+const sl1 = new SocialLinks("Sam", "Shukla", "https://sam-tests.com");
+console.log(sl1);
+sl1.logFullName();
